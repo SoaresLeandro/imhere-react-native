@@ -10,7 +10,9 @@ export function Home(){
 
     return (
     <View style={styles.container}>
-        <Text style={styles.eventName}>React Native</Text>
+        <Text style={styles.eventName}>Nome do evento</Text>
+
+        <View style={styles.form}>       
 
         <TextInput 
         style={styles.input} 
@@ -23,6 +25,7 @@ export function Home(){
             +
         </Text>
         </TouchableOpacity>
+    </View>
     </View>
     )
 }
