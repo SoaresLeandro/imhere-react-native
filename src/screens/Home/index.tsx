@@ -1,4 +1,4 @@
-import { Text, View, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, ScrollView, FlatList, Alert } from 'react-native';
 import { styles } from './styles';
 import { Participant } from '../../components/Participant';
 
@@ -6,14 +6,25 @@ export function Home(){
     const participants = ['Leandro', 'Estevão', 'Vitor Roque', 'Fagundo Torres', 'Raphael Veiga', 
         'Paulinho', 'Emiliano Martinez', 'Murilo', 'Micael', 'Weverton', 'Marcos Rocha', 'Piquerez', 'Richard Rios', 'Vanderlan', 'Mauricio'];
 
-    function handleParticipantAdd()
+    function handleParticipantAdd(participant: string)
     {
-        console.log('Você clicou em adicionar')
+        if(participants.includes(participant)){
+            return Alert.alert("Participante Existe", `O participante ${participant} já está cadastrado`);
+        }
     }
 
     function handleParticipantRemove(name: string)
     {
-        console.log(`Você clicou em remover o Participante ${name}`)
+        Alert.alert("Remover Participante", `Tem certeza que deseja remover o participanete ${name}?`, [
+            {
+                text: 'Sim',
+                onPress: () => Alert.alert('Participante removido'),
+            },
+            {
+                text: 'Não',
+                style: 'cancel'
+            }
+        ]);
     }
 
     return (
@@ -27,7 +38,7 @@ export function Home(){
                 placeholderTextColor='#6b6b6b'
             />
 
-            <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+            <TouchableOpacity style={styles.button} onPress={() => handleParticipantAdd('Leandro')}>
             <Text style={styles.buttonText}>
                 +
             </Text>
