@@ -22,7 +22,7 @@ export function Home(){
         Alert.alert("Remover Participante", `Tem certeza que deseja remover o participanete ${name}?`, [
             {
                 text: 'Sim',
-                onPress: () => Alert.alert('Participante removido'),
+                onPress: () => setParticipant(prevState => prevState.filter(participant => participant != name))
             },
             {
                 text: 'Não',
@@ -40,7 +40,7 @@ export function Home(){
                 style={styles.input} 
                 placeholder='Nome do participante'
                 placeholderTextColor='#6b6b6b'
-                onChangeText={e => setParticipantName(e)}
+                onChangeText={setParticipantName}
                 value={participantName}
             />
 
