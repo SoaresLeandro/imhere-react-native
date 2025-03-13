@@ -1,16 +1,18 @@
+import React, { useState } from 'react';
 import { Text, View, TextInput, TouchableOpacity, ScrollView, FlatList, Alert } from 'react-native';
 import { styles } from './styles';
 import { Participant } from '../../components/Participant';
 
 export function Home(){    
-    const participants = ['Leandro', 'Estevão', 'Vitor Roque', 'Fagundo Torres', 'Raphael Veiga', 
-        'Paulinho', 'Emiliano Martinez', 'Murilo', 'Micael', 'Weverton', 'Marcos Rocha', 'Piquerez', 'Richard Rios', 'Vanderlan', 'Mauricio'];
+    const [participants, setParticipant] = useState(['Leandro']);
 
     function handleParticipantAdd(participant: string)
     {
         if(participants.includes(participant)){
             return Alert.alert("Participante Existe", `O participante ${participant} já está cadastrado`);
         }
+
+        setParticipant(prevState => [...prevState, participant]);
     }
 
     function handleParticipantRemove(name: string)
@@ -38,7 +40,7 @@ export function Home(){
                 placeholderTextColor='#6b6b6b'
             />
 
-            <TouchableOpacity style={styles.button} onPress={() => handleParticipantAdd('Leandro')}>
+            <TouchableOpacity style={styles.button} onPress={() => handleParticipantAdd('Zacarias')}>
             <Text style={styles.buttonText}>
                 +
             </Text>
